@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import pause from '../../assets/pause.svg';
 import play from '../../assets/play.svg';
@@ -53,6 +53,34 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({ video, isActive, autoP
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(autoPlay);
 
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+
+  useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !isVideoLoaded) {
+          setIsVideoLoaded(true);
+        }
+      });
+    }, options);
+
+    if (videoRef.current) {
+      observer.observe(videoRef.current);
+    }
+
+    return () => {
+      if (videoRef.current) {
+        observer.unobserve(videoRef.current);
+      }
+    };
+  }, [isVideoLoaded]);
+
   const togglePlay = () => {
     if (videoRef.current) {
       if (isPlaying) {
@@ -80,7 +108,9 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({ video, isActive, autoP
           muted={autoPlay}
           loop
           playsInline
-        />
+        >
+          {isVideoLoaded && <source src={video.url} type="video/mp4" />}
+        </Video>
         {isActive && (
           <Controls>
             <ControlButton onClick={toggleMute}>
