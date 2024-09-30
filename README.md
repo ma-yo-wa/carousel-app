@@ -1,50 +1,45 @@
-# React + TypeScript + Vite
+## Cozey Frontend Challenge
+A carousel component that displays media files (videos).
+<br/><br/>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Getting Started
+1. clone the repository file from the provided url.
+2. Unzip the file:
+    ```
+    git clone https://github.com/ma-yo-wa/cozey-coding-challenge
+    ```
+3. Unzip the file:
+    ```
+    cd cozey-coding-challenge
+    ```    
+4. Install dependencies:
+    ```
+    npm ci
+    ```
+5. Build the frontend:
+    ```
+    npm run build
+    ```    
+<br/>
 
-Currently, two official plugins are available:
+## Usage
+1. Start vite server
+    ```
+    npm start
+    ```
+2. Visit http://localhost:5173 on any browser
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## External Dependencies
+~ React<br>
+~ Styled Components<br>
+<br/>
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Features
+1. The first video in the carousel should play automatically when the page
+loads. As the user navigates using the left (←) and right (→) arrows, the carousel
+should shift through the videos. Only the currently visible video should be interactive (e.g., play/pause); all
+others should remain inactive.
+2. Implement infinite scrolling, so the user can continuously navigate in both
+directions without an endpoint. Provide visible next/previous arrows for navigation.
+3. Highlight or visually indicate which video is currently in focus.
+4. The carousel must be fully responsive, working across all device sizes. Ensure the design is pixel-perfect based on the provided Figma file.
